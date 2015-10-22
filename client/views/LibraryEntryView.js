@@ -6,10 +6,12 @@ var LibraryEntryView = Backbone.View.extend({
   template: _.template('<td>(<%= artist %>)</td><td><%= title %></td>'),
 //this is where the enqueue gets triggered from
   events: {
-    'click': function() {
-      this.model.enqueue(); // this.model.play();
-      console.log(this.model.attributes);
-    }
+    'click': 'onClick'
+  },
+
+  onClick: function() {
+    console.log('onClick fired');
+    this.model.enqueue(); // this.model.play();
   },
 
   render: function(){

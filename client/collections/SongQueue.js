@@ -9,9 +9,17 @@ var SongQueue = Songs.extend({
 
   //enqueue function
   enqueue: function() {
-    this.push();
-  }
+
+    if(this.length === 1){
+      this.playFirst();
+    }
+
+  },
   //this.pop
   // Write an enqueue function, which 
     // take 'this' song and  into the song queue
+  
+  playFirst: function(){
+    this.at(0).play();
+  }
 });
