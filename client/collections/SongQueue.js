@@ -5,6 +5,8 @@ var SongQueue = Songs.extend({
     //when add is called run this enqueue function
     //model.on('change', this.render, this) or model.on({change: this.render}, this).
     this.on('add', this.enqueue, this);
+    this.on('ended', this.ended, this);
+    this.on('dequeue', this.dequeue, this);
   },
 
   //enqueue function
@@ -15,11 +17,20 @@ var SongQueue = Songs.extend({
     }
 
   },
-  //this.pop
-  // Write an enqueue function, which 
-    // take 'this' song and  into the song queue
   
   playFirst: function(){
     this.at(0).play();
+  },
+
+  ended: function(){
+    this.remove(this.at(0));
+    if(this.at(0)){
+      this.playFirst();
+    }
+  },
+
+  dequeue: function(song){
+    this.remove(song);
   }
+
 });
